@@ -12,8 +12,8 @@ def bonus
    :capulet => {
       :patriarch => {name: "Lord Capulet", age: "50"},
       :matriarch => {name: "Lady Capulet", age: "51"},
-      :hero => {name: "Juliet", age: "15", status: "alive"},
-      :hero_friends => [
+      :heroine => {name: "Juliet", age: "15", status: "alive"},
+      :heroine_friends => [
           {name: "Mercutio", age: "18", attitude: "hot-headed"}, 
           {name: "Nurse", age: "44", attitude: "worried"}
       ]
@@ -21,8 +21,14 @@ def bonus
   }
 
   #code your solution here:
-  epic_tragedy.each_key do |key|
-    key[:hero][:status] = "dead"
+  epic_tragedy.each do |key, value|
+    value.each do |subkey, subvalue|
+      subvalue.each do |subsubkey, subsubvalue|
+        if subsubvalue == "alive"
+          epic_tragedy[key][subkey][subsubkey] = "dead"
+        end
+      end
+    end
   end
   
   return epic_tragedy
